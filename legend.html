@@ -1,0 +1,188 @@
+<!-- legend.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Legend of the Lainz Constant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Same styling */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto:wght@400;700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: radial-gradient(circle, #111, #000);
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            padding-top: 80px;
+            text-align: center;
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #111;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: #00ffcc;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        nav a:hover { color: #fff; }
+        h1 {
+            font-size: 3rem;
+            font-family: 'Orbitron', sans-serif;
+            color: #00ffcc;
+            margin-bottom: 20px;
+        }
+        .content {
+            max-width: 800px;
+            font-size: 1.25rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
+            margin: auto;
+        }
+        .highlight {
+            color: #00ffcc;
+            font-weight: bold;
+        }
+        .easter-egg-swarm {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 9999;
+    }
+
+    .easter-one {
+        position: absolute;
+        color: #00ffcc;
+        font-family: 'Orbitron', sans-serif;
+        text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc88;
+        animation: spin infinite linear;
+        opacity: 0.8;
+        user-select: none;
+        pointer-events: none;  /* Make sure they can't be clicked */
+    }
+
+
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="history.html">History</a>
+    <a href="legend.html">Lore</a>
+    <a href="applications.html">Applications</a>
+    <a href="philosophy.html">Philosophy</a>
+    <a href="quiz.html">Quiz</a>
+</nav>
+
+<h1>The Hidden Legend</h1>
+
+<div class="content">
+    <p>
+        Before time was counted and stars were named, a singular force held the cosmos together — the <span class="highlight">Lainz Constant</span>.
+    </p>
+    <p>
+        Passed down in whispers through mathematical monasteries, it was said to be the **Original Prime**, the **First Thought** of the universe.
+    </p>
+    <p>
+        According to the sacred scrolls of Numerion, Lainz himself journeyed to the Infinity Summit, where he carved the symbol <span class="highlight">1</span> into stone using pure logic.
+    </p>
+    <p>
+        Those who dare to understand its power are forever changed.
+    </p>
+</div>
+
+<span onclick="activateEasterEgg()" style="cursor:pointer;" title="Click if you dare...">🜁</span>
+
+<footer style="margin-top: 60px; margin-bottom: 60px; font-size: 0.9rem; color: #888;">
+    The Lainz Constant – Whispered through the ages, etched into eternity.
+</footer>
+
+<script>
+    function activateEasterEgg() {
+        // Create the "portal" background that hides the page content
+        const portal = document.createElement('div');
+        portal.style.position = 'fixed';
+        portal.style.top = 0;
+        portal.style.left = 0;
+        portal.style.width = '100vw';
+        portal.style.height = '100vh';
+        portal.style.background = 'black';
+        portal.style.zIndex = '9999';
+        portal.style.display = 'flex';
+        portal.style.justifyContent = 'center';
+        portal.style.alignItems = 'center';
+        portal.style.overflow = 'hidden';
+        portal.style.pointerEvents = 'none';  // Make sure we can't interact with anything
+        document.body.appendChild(portal);
+
+        // Add the spinning '1's
+        for (let i = 0; i < 50; i++) {
+            const one = document.createElement('div');
+            one.className = 'easter-one';
+            one.innerText = '1';
+
+            const size = Math.random() * 3 + 1; // Between 1rem and 4rem
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            const rotateSpeed = Math.random() * 5 + 5; // 5s to 10s
+
+            one.style.fontSize = `${size}rem`;
+            one.style.top = `${y}vh`;
+            one.style.left = `${x}vw`;
+            one.style.animationDuration = `${rotateSpeed}s`;
+
+            portal.appendChild(one);
+        }
+
+        // Create the animation for the spinning effect
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+
+            .easter-one {
+                position: absolute;
+                color: #00ffcc;
+                font-family: 'Orbitron', sans-serif;
+                text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc88;
+                animation: spin infinite linear;
+                opacity: 0.8;
+                user-select: none;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Set a timer to remove the portal and return to the normal page after 5 seconds
+        setTimeout(() => {
+            portal.remove();
+        }, 15000);
+    }
+</script>
+
+
+
+
+</body>
+</html>

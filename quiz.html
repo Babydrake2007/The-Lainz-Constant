@@ -1,0 +1,174 @@
+<!-- quiz.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz of the Constant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto:wght@400;700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: linear-gradient(to right, #0f0f0f, #111);
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            padding-top: 100px;
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #111;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: #00ffcc;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        h1 {
+            font-size: 3rem;
+            color: #00ffcc;
+            margin-bottom: 20px;
+        }
+        .quiz-box {
+            max-width: 600px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.2);
+        }
+        .question {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        button {
+            background: #00ffcc;
+            border: none;
+            color: #000;
+            padding: 10px 20px;
+            margin-top: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #00ddb3;
+        }
+        #red-x-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .x-line {
+            position: absolute;
+            width: 200vw;
+            height: 8px;
+            background: crimson;
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+            opacity: 0;
+            animation: xDraw 0.8s ease forwards;
+            box-shadow: 0 0 25px red;
+            border-radius: 4px;
+        }
+
+        .x1 {
+            transform: translate(-50%, -50%) rotate(45deg) scaleX(0);
+            animation-delay: 0s;
+        }
+
+        .x2 {
+            transform: translate(-50%, -50%) rotate(-45deg) scaleX(0);
+            animation-delay: 0.2s;
+        }
+
+        @keyframes xDraw {
+            to {
+                transform: translate(-50%, -50%) rotate(var(--angle)) scaleX(1);
+                opacity: 0.8;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="history.html">History</a>
+    <a href="applications.html">Applications</a>
+    <a href="philosophy.html">Philosophy</a>
+    <a href="legend.html">Lore</a>
+    <a href="quiz.html">Quiz</a>
+</nav>
+
+<h1>The Quiz of Unity</h1>
+
+<div class="quiz-box">
+    <div class="question" id="question">
+        What is the most fundamental constant in existence?
+    </div>
+    <button onclick="answer('1')">1</button>
+    <button onclick="answer('π')">π</button>
+    <button onclick="answer('e')">e</button>
+    <button onclick="answer('42')">42</button>
+    <div style="margin-top: 20px;" id="result"></div>
+</div>
+
+<footer style="margin-top: 60px; margin-bottom: 60px; font-size: 0.9rem; color: #888;">
+    The Lainz Constant – Only the worthy shall know its truth.
+</footer>
+
+
+<script>
+    function answer(val) {
+        const result = document.getElementById('result');
+        const buttons = document.querySelectorAll('button');
+
+        if (val === '1') {
+            result.innerHTML = "<strong style='color:#00ffcc;'>Correct. You are chosen.</strong>";
+        } else {
+            result.innerHTML = "<strong style='color:crimson;'>Incorrect. Meditate on your answer.</strong>";
+            drawRedX();
+            buttons.forEach(btn => btn.disabled = true);
+        }
+    }
+
+    function drawRedX() {
+        const xOverlay = document.createElement('div');
+        xOverlay.id = 'red-x-overlay';
+
+        const line1 = document.createElement('div');
+        line1.className = 'x-line x1';
+        line1.style.setProperty('--angle', '45deg');
+
+        const line2 = document.createElement('div');
+        line2.className = 'x-line x2';
+        line2.style.setProperty('--angle', '-45deg');
+
+        xOverlay.appendChild(line1);
+        xOverlay.appendChild(line2);
+        document.body.appendChild(xOverlay);
+    }
+
+</script>
+
+
+
+</body>
+</html>
