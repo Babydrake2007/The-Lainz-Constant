@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Legend of the Lainz Constant</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         /* Same styling */
@@ -36,10 +37,18 @@
         }
         nav a:hover { color: #fff; }
         h1 {
-            font-size: 3rem;
+            font-size: 4rem;
             font-family: 'Orbitron', sans-serif;
             color: #00ffcc;
+            text-shadow: 0 0 20px rgba(0, 255, 204, 0.6);
             margin-bottom: 20px;
+        }
+        .constant {
+            font-size: 8rem;
+            font-weight: bold;
+            color: #ffffff;
+            animation: pulse 2s infinite;
+            margin-bottom: 30px;
         }
         .content {
             max-width: 800px;
@@ -49,6 +58,11 @@
             border-radius: 20px;
             box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
             margin: auto;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
         }
         .highlight {
             color: #00ffcc;
@@ -62,24 +76,24 @@
         height: 100vh;
         pointer-events: none;
         z-index: 9999;
-    }
+        }
 
-    .easter-one {
-        position: absolute;
-        color: #00ffcc;
-        font-family: 'Orbitron', sans-serif;
-        text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc88;
-        animation: spin infinite linear;
-        opacity: 0.8;
-        user-select: none;
-        pointer-events: none;  /* Make sure they can't be clicked */
-    }
+        .easter-one {
+            position: absolute;
+            color: #00ffcc;
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc88;
+            animation: spin infinite linear;
+            opacity: 0.8;
+            user-select: none;
+            pointer-events: none;  /* Make sure they can't be clicked */
+        }
 
 
-    @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
 
     </style>
 </head>
@@ -91,10 +105,13 @@
     <a href="legend.html">Lore</a>
     <a href="applications.html">Applications</a>
     <a href="philosophy.html">Philosophy</a>
+    <a href="petition.html">Petition</a>
+    <a href="game.html">Game</a>
     <a href="quiz.html">Quiz</a>
 </nav>
 
 <h1>The Hidden Legend</h1>
+<div class="constant">1</div>
 
 <div class="content">
     <p>

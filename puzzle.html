@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Power of 1 - Blackboard</title>
+    <style>
+        body {
+            background: #111;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #00ffcc;
+            text-shadow: 0 0 10px #00ffcc;
+            margin-top: 80px;
+        }
+
+        #blackboard {
+            border: 2px solid #00ffcc;
+            margin: 20px auto;
+            display: block;
+            background: #222;
+            cursor: crosshair;
+        }
+
+        #clearBtn {
+            background-color: #00ffcc;
+            color: #111;
+            font-size: 1.25rem;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        #clearBtn:hover {
+            background-color: #00cc99;
+        }
+
+        footer {
+            color: #888;
+            font-size: 1rem;
+            margin-top: 30px;
+        }
+
+        .highlight {
+            color: #00ffcc;
+            font-weight: bold;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #111;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: #00ffcc;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: #fff; }
+    </style>
+</head>
+<body>
+
+    <!-- Header with navigation links -->
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="history.html">History</a>
+        <a href="legend.html">Lore</a>
+        <a href="applications.html">Applications</a>
+        <a href="philosophy.html">Philosophy</a>
+        <a href="petition.html">Petition</a>
+        <a href="game.html">Game</a>
+        <a href="quiz.html">Quiz</a>
+    </nav>
+
+    <h1>Draw with the Power of <span class="highlight">1</span></h1>
+
+    <canvas id="blackboard"></canvas>
+
+    <button id="clearBtn">Clear</button>
+
+    <footer>
+        The Lainz Constant – A force to be reckoned with, drawn in the power of <span class="highlight">1</span>.
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('blackboard');
+        const ctx = canvas.getContext('2d');
+        const clearBtn = document.getElementById('clearBtn');
+
+        // Set canvas size
+        canvas.width = window.innerWidth * 0.8;
+        canvas.height = window.innerHeight * 0.7;
+
+        // Set drawing parameters (thinner lines)
+        ctx.lineWidth = 2;  // Thin lines for drawing
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = '#00ffcc'; // Color of the drawn "1"
+
+        let drawing = false;
+        let lastX = 0;
+        let lastY = 0;
+
+        // Start drawing
+        canvas.addEventListener('mousedown', (e) => {
+            drawing = true;
+            lastX = e.clientX - canvas.offsetLeft;
+            lastY = e.clientY - canvas.offsetTop;
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+        });
+
+        // Draw while moving the mouse
+        canvas.addEventListener('mousemove', (e) => {
+            if (drawing) {
+                const x = e.clientX - canvas.offsetLeft;
+                const y = e.clientY - canvas.offsetTop;
+                ctx.lineTo(x, y);
+                ctx.stroke();
+                lastX = x;
+                lastY = y;
+            }
+        });
+
+        // End drawing
+        canvas.addEventListener('mouseup', () => {
+            drawing = false;
+        });
+
+        // Touch events for mobile users
+        canvas.addEventListener('touchstart', (e) => {
+            drawing = true;
+            lastX = e.touches[0].clientX - canvas.offsetLeft;
+            lastY = e.touches[0].clientY - canvas.offsetTop;
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+        });
+
+        canvas.addEventListener('touchmove', (e) => {
+            if (drawing) {
+                const x = e.touches[0].clientX - canvas.offsetLeft;
+                const y = e.touches[0].clientY - canvas.offsetTop;
+                ctx.lineTo(x, y);
+                ctx.stroke();
+                lastX = x;
+                lastY = y;
+            }
+        });
+
+        canvas.addEventListener('touchend', () => {
+            drawing = false;
+        });
+
+        // Optional: Add glowing effect for the power of 1 (optional)
+        function glowEffect(x, y) {
+            ctx.beginPath();
+            ctx.arc(x, y, 3, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(0, 255, 204, 0.3)';
+            ctx.fill();
+        }
+
+        // Add glow on mouse move to simulate power
+        canvas.addEventListener('mousemove', (e) => {
+            if (drawing) {
+                glowEffect(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+            }
+        });
+
+        // Add glow on touch move for mobile
+        canvas.addEventListener('touchmove', (e) => {
+            if (drawing) {
+                glowEffect(e.touches[0].clientX - canvas.offsetLeft, e.touches[0].clientY - canvas.offsetTop);
+            }
+        });
+
+        // Clear button functionality
+        clearBtn.addEventListener('click', () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clears the canvas
+        });
+    </script>
+
+</body>
+</html>

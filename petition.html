@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Petition to Acknowledge the Lainz Constant</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto:wght@400;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle, #111, #000);
+      color: #fff;
+      font-family: 'Roboto', sans-serif;
+      padding-top: 100px;
+      text-align: center;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #111;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: #00ffcc;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #00ffcc;
+      font-family: 'Orbitron', sans-serif;
+      text-shadow: 0 0 10px #00ffcc, 0 0 30px #00ffcc66;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+
+    .petition-box {
+      max-width: 700px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
+      font-size: 1.2rem;
+    }
+
+    button {
+      margin-top: 20px;
+      background-color: #00ffcc;
+      color: #000;
+      border: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #00ccaa;
+      transform: scale(1.05);
+    }
+
+    #confirmation {
+      margin-top: 30px;
+      font-size: 1.5rem;
+      color: #00ffcc;
+      text-shadow: 0 0 10px #00ffcc99;
+      display: none;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    footer {
+      margin-top: 60px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="history.html">History</a>
+  <a href="legend.html">Lore</a>
+  <a href="applications.html">Applications</a>
+  <a href="philosophy.html">Philosophy</a>
+  <a href="petition.html">Petition</a>
+  <a href="game.html">Game</a>
+  <a href="quiz.html">Quiz</a>
+</nav>
+
+<h1>Global Petition: Recognize the Lainz Constant</h1>
+
+<div class="petition-box">
+  <p>
+    We, the awakened, solemnly acknowledge the supremacy of the <span style="color:#00ffcc; font-weight:bold;">Lainz Constant</span>.
+    Its value, presence, and influence have transcended time and calculation.
+  </p>
+  <p>
+    Let it be known that even <em>one</em> voice—strong and pure—is all that is required.
+  </p>
+  <button onclick="signPetition()">Sign the Petition</button>
+
+  <div id="confirmation">
+    <p><strong>1</strong> person has signed this petition.</p>
+    <p>That is all that is required.</p>
+    <p>Thank you for participating.</p>
+  </div>
+</div>
+
+<footer>
+  The Lainz Constant – A solitary truth, echoed forever.
+</footer>
+
+<script>
+  function signPetition() {
+    const button = document.querySelector("button");
+    const confirmation = document.getElementById("confirmation");
+
+    button.disabled = true;
+    button.innerText = "Signed";
+    confirmation.style.display = "block";
+  }
+</script>
+
+</body>
+</html>

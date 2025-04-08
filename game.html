@@ -1,0 +1,184 @@
+<!-- game.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pursuit of One</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle, #000000, #111111);
+      color: #00ffcc;
+      font-family: 'Orbitron', sans-serif;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #111;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: #00ffcc;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    .header {
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      text-shadow: 0 0 10px #00ffcc;
+      margin-bottom: 10px;
+    }
+
+    .scoreboard {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .game-area {
+      position: relative;
+      width: 100vw;
+      height: 75vh;
+      overflow: hidden;
+    }
+
+    .falling {
+      position: absolute;
+      top: -50px;
+      font-size: 2.5rem;
+      animation: fall linear forwards;
+      user-select: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .correct {
+      color: #00ffcc;
+      text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc88;
+    }
+
+    @keyframes fall {
+      to {
+        top: 100vh;
+        opacity: 0;
+        transform: translateY(100vh) rotate(180deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="history.html">History</a>
+  <a href="legend.html">Lore</a>
+  <a href="applications.html">Applications</a>
+  <a href="philosophy.html">Philosophy</a>
+  <a href="petition.html">Petition</a>
+  <a href="game.html">Game</a>
+  <a href="quiz.html">Quiz</a>
+</nav>
+
+<div class="header">
+  <h1>Pursuit of One</h1>
+  <div class="scoreboard">
+    Score: <span id="score">0</span> |
+    High Score: <span id="highscore">0</span>
+  </div>
+</div>
+
+<div class="game-area" id="gameArea"></div>
+
+<script>
+  const gameArea = document.getElementById("gameArea");
+  const scoreEl = document.getElementById("score");
+  const highscoreEl = document.getElementById("highscore");
+
+  const symbols = ['π', 'e', '0', '∞','1', '2', '3', '4', '42','1', '√2', 'φ', 'ℵ₀', 'Ω', 'i', '∑', 'Δ', '1'];
+  let score = 0;
+  let highscore = 0;
+
+  function spawnSymbol() {
+    const symbol = document.createElement("div");
+    symbol.classList.add("falling");
+
+    const value = symbols[Math.floor(Math.random() * symbols.length)];
+    symbol.textContent = value;
+
+    if (value === "1") {
+      symbol.classList.add("correct");
+    }
+
+    symbol.style.left = Math.random() * 90 + "%";
+    symbol.style.animationDuration = `${Math.random() * 3 + 4}s`; // 3 to 6 seconds
+    symbol.style.position = "absolute";
+    symbol.style.top = "0px";
+    symbol.style.left = `${Math.random() * 90}vw`;
+    symbol.style.fontSize = "2rem";
+    symbol.style.display = "flex";
+    symbol.style.alignItems = "center";
+    symbol.style.justifyContent = "center";
+    symbol.style.width = "50px";
+    symbol.style.height = "50px";
+    symbol.style.borderRadius = "50%";
+    symbol.style.cursor = "pointer";
+    symbol.style.transition = "top 0.05s linear";
+
+
+
+    symbol.addEventListener("click", () => {
+      if (value === "1") {
+        score++;
+        if (score > highscore) {
+          highscore = score;
+          highscoreEl.textContent = highscore;
+        }
+      } else {
+        score = 0;
+      }
+      scoreEl.textContent = score;
+      symbol.remove();
+    });
+
+    gameArea.appendChild(symbol);
+
+    // Cleanup if it falls off screen
+    setTimeout(() => {
+      if (symbol.parentElement) symbol.remove();
+    }, 7000);
+  }
+
+  setInterval(spawnSymbol, 400);
+</script>
+
+</body>
+</html>
